@@ -1,0 +1,69 @@
+<div class="container-xl">
+    <div class="table-responsive" style="margin-top: 10%;">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h4><b>Manage Tasks</b></h4>
+                    </div>
+                    <div class="col-sm-6">
+                        <button class="btn btn-success" style="float: right;" (click)="AddTask()">
+                            <i class='fas fa-plus-circle'></i><span> ADD</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <table class="table table-striped table-hover table-bordered table-content">
+                <thead>
+                    <tr class="center-align">
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Due Date</th>
+                        <th>Completed</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let task of tasksList" class="center-align">
+                        <td>{{ task.title }}</td>
+                        <td>{{ task.description }}</td>
+                        <td>{{ task.due_date.date | date:'fullDate' }}</td>
+                        <td>
+                            <div class="form-check form-switch">
+                                <input (change)="onSwitchChange(task.id)" [checked]="task.completed"
+                                    class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                            </div>
+                        </td>
+                        <td>
+                            <a href="#" [routerLink]="['/view/', task.id]" class="btn"><i
+                                    class='fas fa-eye view'></i></a>
+                            <a href="#" [routerLink]="['/Edit/', task.id]" class="btn"><i
+                                    class="fa fa-edit edit"></i></a>
+                            <button (click)="openModal(task.id)" type="button" class="btn"><i
+                                    class='fas fa-trash-alt delete'></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td *ngIf="tasksList.length == 0" colspan="5">No Tasks Found</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<ng-template #DeleteModal>
+    <div class="modal-header">
+        <h5 class="modal-title" id="modal-title">Delete Confirmation</h5>
+        <button type="button" class="btn close" aria-label="Close button" aria-describedby="modal-title">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p>Are you sure you want to delete?</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" (click)="closeModal()">CANCEL</button>
+        <button type="button" ngbAutofocus class="btn btn-success" (click)="deleteTask()">OK</button>
+    </div>
+</ng-template>
