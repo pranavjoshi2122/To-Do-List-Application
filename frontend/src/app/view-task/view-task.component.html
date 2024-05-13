@@ -1,0 +1,61 @@
+<div class="container-xl">
+  <div class="table-responsive">
+    <div class="table-wrapper">
+      <div class="table-title">
+        <div class="row">
+          <div class="col-sm-6">
+            <h4><b>View Employee</b></h4>
+          </div>
+          <div class="col-sm-6">
+            <a href="#" routerLink="/home" class="btn btn-success back"><i class='fas fa-arrow-circle-left'></i>
+              &nbsp;Back</a>
+          </div>
+        </div>
+      </div>
+      <table class="table table-striped table-hover table-bordered table-content">
+        <tbody>
+          <tr>
+            <td>
+              <label><b>Title</b></label>
+            </td>
+            <td>
+              <span>{{ task.title }}</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label><b>Description</b></label>
+            </td>
+            <td>
+              <span>{{ task.description }}</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label><b>Due Date</b></label>
+            </td>
+            <td>
+              <span>{{ task.due_date.date | date:'fullDate' }}</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label><b>Created At</b></label>
+            </td>
+            <td>
+              <span>{{ task.created_at.date | date:'fullDate' }}</span>              
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label><b>Udpated At</b></label>
+            </td>
+            <td>
+              <span>{{ task.updated_at.date | date:'fullDate' }}</span>              
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

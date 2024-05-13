@@ -1,0 +1,57 @@
+  <div class="container-xl" style="margin-top: 100px;">
+    <div class="table-responsive">
+      <div class="table-wrapper">
+        <div class="table-title">
+          <div class="row">
+            <div class="col-sm-6 mb-3">
+              <h4><b>New Task</b></h4>
+            </div>
+            <div class="col-sm-6 mb-3">
+              <a href="#" routerLink="/home" class="btn btn-success back"><i class='fas fa-arrow-circle-left'></i>
+                 Back</a>
+            </div>
+          </div>
+        </div>
+        <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+          <div class="table-content">
+            <div class="form-group p-10 row mb-3">
+              <div class="col-sm-3">
+                <label for="title" class="p-t-b-10">Title</label>
+              </div>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="title" formControlName="title" >
+                <div *ngIf="taskForm.get('title')?.touched && taskForm.get('title')?.hasError('required')" class="text-danger">
+                    Title is required
+                  </div>
+              </div>
+            </div>
+            <div class="form-group p-10 row mb-3">
+              <div class="col-sm-3">
+                <label for="description" class="p-t-b-10">Description</label>
+              </div>
+              <div class="col-sm-9">
+                <textarea formControlName="description" id="description" type="text" class="form-control" ></textarea>
+                <div *ngIf="taskForm.get('description')?.touched && taskForm.get('description')?.hasError('required')" class="text-danger">
+                    Description is required
+                  </div>
+              </div>
+            </div>
+            <div class="form-group p-10 row mb-3">
+              <div class="col-sm-3">
+                <label class="p-t-b-10">Due Date</label>
+              </div>
+              <div class="col-sm-9">
+                <input type="date" formControlName="dueDate" class="form-control" >
+                <div *ngIf="taskForm.get('dueDate')?.touched && taskForm.get('dueDate')?.hasError('required')" class="text-danger">
+                    Due Date is required
+                  </div>
+              </div>
+            </div>
+          </div>
+          <div class="table-footer">
+            <button class="btn btn-success" type="submit" >Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
